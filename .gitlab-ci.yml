@@ -1,0 +1,11 @@
+image: golang:1.21.6
+
+stages:
+  - test
+
+unit_tests:
+  stage: test
+  coverage: '/total:\s+\(statements\)\s+(\d+.\d+\%)/'
+  script:
+    - make test_race
+    - go tool cover -func=coverage.out
